@@ -1,0 +1,12 @@
+{
+  "name": "chatfriendsApp",
+  "displayName": "chatfriendsApp",
+  "expo": {
+    "name": "chatfriendsApp",
+    "slug": "chatfriendsApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
