@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
-import { db } from '../firebase/config'
+import { firestore } from '../firebase/config'
 import { FlatList, TextInput } from 'react-native-gesture-handler'
 import { AuthContext } from '../context/AuthContext'
 
@@ -15,36 +15,37 @@ const Chat: React.FC<any> = ({ route }) => {
 
   const { user } = useContext(AuthContext)
 
-  const dbRef = db.ref('chatrooms')
+  const roomsCollection = firestore.collection('rooms')
 
   const [messages, setMessages] = useState<IMessage[]>([])
 
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    dbRef.child(room).on('value', (snapshot) => {
-      const data = snapshot.val()
+    roomsCollection
+      .doc(room)
+      .collection('messages')
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        let array: IMessage[] = []
 
-      let msgs = []
+        snapshot.docs.forEach((doc) => {
+          const data = doc.data() as IMessage
 
-      for (let key in data) {
-        msgs.push(data[key])
-      }
+          array.push(data)
+        })
 
-      if (msgs.length > 0) {
-        setMessages(msgs)
-      } else {
-        setMessages([])
-      }
-    })
-  }, [])
+        setMessages(array)
+      })
+  }, [room, roomsCollection])
 
   const handleSendMessage = () => {
-    dbRef.child(room).push({
+    roomsCollection.doc(room).collection('messages').add({
       message,
       user: user.displayName,
       timestamp: new Date().getTime(),
     })
+
     setMessage('')
   }
 

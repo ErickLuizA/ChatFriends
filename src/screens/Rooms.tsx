@@ -10,43 +10,45 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
-import { db } from '../firebase/config'
+import { firestore } from '../firebase/config'
 import { useNavigation } from '@react-navigation/native'
 
 const Rooms: React.FC = () => {
   const [rooms, setRooms] = useState<string[]>([])
+  const [roomName, setRoomName] = useState('')
 
   const [modal, setModal] = useState(false)
 
-  const [roomName, setRoomName] = useState('')
-
-  const dbRef = db.ref('chatrooms')
+  const roomsCollection = firestore.collection('rooms')
 
   const navigation = useNavigation()
 
-  useEffect(() => {
-    ;(async () => {
-      dbRef.on('value', (snapshot) => {
-        let array = []
-        for (let key in snapshot.val()) {
-          array.push(key)
-        }
-
-        setRooms(array)
-      })
-    })()
-  }, [])
-
-  const handleCreateRoom = async () => {
-    console.log(roomName.length)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function handleCreateRoom() {
     if (roomName.length > 0) {
-      await dbRef.child(roomName).set('')
+      roomsCollection.doc(roomName).set({})
+
       setRoomName('')
       setModal(false)
     } else {
       setModal(false)
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line no-extra-semi
+    ;(async () => {
+      const result = await roomsCollection.get()
+
+      let array: string[] = []
+
+      result.docs.forEach((doc) => {
+        array.push(doc.id)
+      })
+
+      setRooms(array)
+    })()
+  }, [handleCreateRoom, roomsCollection])
 
   return (
     <View style={styles.container}>

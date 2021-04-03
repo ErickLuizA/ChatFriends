@@ -1,4 +1,7 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
+
 import Config from 'react-native-config'
 
 const firebaseConfig = {
@@ -20,7 +23,7 @@ try {
   }
 }
 
-const db = firebase.database()
+const firestore = firebase.firestore()
 const auth = firebase.auth()
 
-export { db, auth, firebase }
+export { firestore, auth }
