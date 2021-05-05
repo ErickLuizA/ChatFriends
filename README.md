@@ -23,7 +23,7 @@
   <a href="#clipboard-description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#building_construction-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a> |&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#framed_picture-screenshots">Screenshots</a>
 </p>
 
@@ -60,31 +60,31 @@ chatfriends is a chat app built with React Native(Expo) and firebase.
 $ cd ChatFriends
 
 # Install dependencies
-$ yarn install
+$ npm install
 ```
 
 ## 3. Execution
 
 ```shell
-$ yarn android or ios
+$ npm run android or ios
 
-$ yarn start
+$ npm start
 ```
 
 ## :framed_picture: Screenshots
 
 <div>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220331.png"  width="200"/>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220339.png"  width="200"/>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220352.png"  width="200"/>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220400.png"  width="200"/>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220711.png"  width="200"/>
-  <img alt="SkyKow icon" src="./.github/Screenshot_20200904-220719.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Home.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Signin.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Dashboard.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Create.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Rooms.png"  width="200"/>
+  <img alt="SkyKow icon" src="./.github/Chat.png"  width="200"/>
 </div>
 
 ## :information_source: TODO
-  - Implement tests
-  - Fix bugs
+  - Design fix
+  - Tests
 
 
 ## :memo: License
